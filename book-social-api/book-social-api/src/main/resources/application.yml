@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: book-social-api
+
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 50MB
+
+springdoc:
+  
