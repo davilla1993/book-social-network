@@ -1,5 +1,6 @@
 package com.follygbossou.booksocial.handler;
 
+import com.follygbossou.booksocial.exceptions.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -86,7 +87,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionResponse> handleException(Exception ex) {
+    public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException ex) {
 
         ex.printStackTrace();
 
@@ -95,6 +96,20 @@ public class GlobalExceptionHandler {
                 .body(
                         ExceptionResponse.builder()
                                 .businessErrorDescription("INTERNAL SERVER ERROR, PLEASE CONTACT THE ADMINISTRATOR")
+                                .error(ex.getMessage())
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> handleException(Exception ex) {
+
+        ex.printStackTrace();
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
                                 .error(ex.getMessage())
                                 .build()
                 );

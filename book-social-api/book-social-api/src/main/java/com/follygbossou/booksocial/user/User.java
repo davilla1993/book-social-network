@@ -1,5 +1,8 @@
 package com.follygbossou.booksocial.user;
 
+import com.follygbossou.booksocial.book.Book;
+import com.follygbossou.booksocial.common.BaseEntity;
+import com.follygbossou.booksocial.history.BookTransactionHistory;
 import com.follygbossou.booksocial.role.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -25,7 +28,6 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Entity
 @Table(name = "_user")
-
 @EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails, Principal {
 
@@ -52,6 +54,12 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column( nullable = false, updatable = false)
