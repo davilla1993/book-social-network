@@ -1,5 +1,6 @@
 package com.follygbossou.booksocial.book;
 
+import com.follygbossou.booksocial.fileStorage.FileUtils;
 import com.follygbossou.booksocial.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,7 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
-                // todo implements this later
-                // .cover()
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
