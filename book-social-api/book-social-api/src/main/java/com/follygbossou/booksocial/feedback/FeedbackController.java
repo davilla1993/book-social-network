@@ -19,9 +19,7 @@ public class FeedbackController {
     @PostMapping
     public ResponseEntity<Integer> saveFeedback(@Valid @RequestBody FeedbackRequest request,
                                                     Authentication connectedUser) {
-
         return ResponseEntity.ok(service.save(request, connectedUser));
-
     }
 
     @GetMapping("/book/{book-id}")
@@ -33,4 +31,6 @@ public class FeedbackController {
 
         return ResponseEntity.ok(service.findAllFeedbacksByBook(bookId, page, size, connectedUser));
     }
+
+
 }
