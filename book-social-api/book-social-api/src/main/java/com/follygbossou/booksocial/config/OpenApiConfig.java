@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         url = "https://follygbossou.com"
                 ),
                 description = "Documentation for book-social-network API",
-                title = "OpenApu Specification",
+                title = "BOOK-SOCIAL-NETWORK API",
                 version =  "1.0",
                 license = @License(
                         name = "Free License",
