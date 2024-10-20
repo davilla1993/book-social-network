@@ -18,10 +18,11 @@ public class Token {
     @GeneratedValue
     private Integer id;
 
+    @Column(unique = true)
     private String token;
 
     private LocalDateTime createdAt;
-    private LocalDateTime expriresAt;
+    private LocalDateTime expireAt;
     private LocalDateTime validateAt;
 
     @ManyToOne

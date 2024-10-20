@@ -1,5 +1,6 @@
 package com.follygbossou.booksocial.security;
 
+import com.follygbossou.booksocial.exceptions.ResourceNotFoundException;
 import com.follygbossou.booksocial.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         return repository.findByEmail(userEmail)
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

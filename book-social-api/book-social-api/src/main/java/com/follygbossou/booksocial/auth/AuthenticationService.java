@@ -82,7 +82,7 @@ public class AuthenticationService {
         var token = Token.builder()
                 .token(generatedToken)
                 .createdAt(LocalDateTime.now())
-                .expriresAt(LocalDateTime.now().plusMinutes(15))
+                .expireAt(LocalDateTime.now().plusMinutes(15))
                 .user(user)
                 .build();
         tokenRepository.save(token);
@@ -124,7 +124,7 @@ public class AuthenticationService {
                 // todo exception has to be defined
                 .orElseThrow(() ->  new RuntimeException("Invalid token"));
 
-        if(LocalDateTime.now().isAfter(savedToken.getExpriresAt())) {
+        if(LocalDateTime.now().isAfter(savedToken.getExpireAt())) {
             sendValidationEmail(savedToken.getUser());
             throw new RuntimeException("Activation token has expired. A new token has been sent to the same email address.");
         }

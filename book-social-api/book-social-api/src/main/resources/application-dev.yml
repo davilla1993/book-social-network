@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/book_social_network
+    url: jdbc:postgresql://localhost:5432/book_social_network
     username: postgres
-    password: postgres
+    password: toor
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: false
     properties:
       hibernate:

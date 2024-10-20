@@ -1,6 +1,7 @@
 package com.follygbossou.booksocial.handler;
 
 import com.follygbossou.booksocial.exceptions.OperationNotPermittedException;
+import com.follygbossou.booksocial.exceptions.ResourceNotFoundException;
 import jakarta.mail.MessagingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +14,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashSet;
 import java.util.Set;
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(LockedException.class)
-    public ResponseEntity<ExceptionResponse> handleException(LockedException ex) {
+    public ResponseEntity<ExceptionResponse> handleLockedException(LockedException ex) {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body(
@@ -28,11 +28,10 @@ public class GlobalExceptionHandler {
                                 .error(ex.getMessage())
                                 .build()
                 );
-
     }
 
     @ExceptionHandler(DisabledException.class)
-    public ResponseEntity<ExceptionResponse> handleException(DisabledException ex) {
+    public ResponseEntity<ExceptionResponse> handleDisabledException(DisabledException ex) {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body(
@@ -43,8 +42,9 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<ExceptionResponse> handleException(BadCredentialsException ex) {
+    public ResponseEntity<ExceptionResponse> handleBadCredentialsException(BadCredentialsException ex) {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body(
@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MessagingException.class)
-    public ResponseEntity<ExceptionResponse> handleException(MessagingException ex) {
+    public ResponseEntity<ExceptionResponse> handleMessagingException(MessagingException ex) {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(
@@ -68,8 +68,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ExceptionResponse> handleException(MethodArgumentNotValidException ex) {
-
+    public ResponseEntity<ExceptionResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         Set<String> errors = new HashSet<>();
         ex.getBindingResult().getAllErrors()
                 .forEach(error -> {
@@ -86,9 +85,32 @@ public class GlobalExceptionHandler {
                 );
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException ex) {
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> handleOperationNotPermittedException(OperationNotPermittedException ex) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ExceptionResponse.builder()
+                                .error(ex.getMessage())
+                                .build()
+                );
+    }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        ex.printStackTrace();
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(
+                        ExceptionResponse.builder()
+                                .error(ex.getMessage())
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ExceptionResponse> handleGenericException(Exception ex) {
         ex.printStackTrace();
 
         return ResponseEntity
@@ -96,20 +118,6 @@ public class GlobalExceptionHandler {
                 .body(
                         ExceptionResponse.builder()
                                 .businessErrorDescription("INTERNAL SERVER ERROR, PLEASE CONTACT THE ADMINISTRATOR")
-                                .error(ex.getMessage())
-                                .build()
-                );
-    }
-
-    @ExceptionHandler(OperationNotPermittedException.class)
-    public ResponseEntity<ExceptionResponse> handleException(Exception ex) {
-
-        ex.printStackTrace();
-
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(
-                        ExceptionResponse.builder()
                                 .error(ex.getMessage())
                                 .build()
                 );

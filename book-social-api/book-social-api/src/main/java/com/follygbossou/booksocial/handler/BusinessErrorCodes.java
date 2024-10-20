@@ -3,6 +3,7 @@ package com.follygbossou.booksocial.handler;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public enum BusinessErrorCodes {
 
     NO_CODE(0, HttpStatus.NOT_IMPLEMENTED, "NO CODE"),
@@ -13,16 +14,13 @@ public enum BusinessErrorCodes {
 
     ACCOUNT_LOCKED(302, HttpStatus.FORBIDDEN, "USER ACCOUNT IS LOCKED"),
 
-    ACCOUNT_DISABLED(303, HttpStatus.FORBIDDEN, "USER ACCOUNT IS DISABLED"),
+    ACCOUNT_DISABLED(303, HttpStatus.FORBIDDEN, "User account is disabled"),
 
-    BAD_CREDENTIALS(304, HttpStatus.FORBIDDEN, "LOGIN AND / OR PASSWORD IS INCORRECT")
+    BAD_CREDENTIALS(304, HttpStatus.FORBIDDEN, "Login and / or password is incorrect")
     ;
 
-    @Getter
     private final int code;
-    @Getter
     private final HttpStatus httpStatus;
-    @Getter
     private final String description;
 
 

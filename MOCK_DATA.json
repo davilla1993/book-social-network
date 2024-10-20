@@ -1,0 +1,10 @@
+[{"title":"Pride and Prejudice","authorName":"Emily Brown","isbn":"578698513-X","synopsis":"A heartwarming story of friendship and redemption","bookCover":"paperback","archived":true,"shareable":false},
+{"title":"The Great Gatsby","authorName":"Sarah Davis","isbn":"412719114-7","synopsis":"An epic adventure through time and space","bookCover":"hardcover","archived":true,"shareable":false},
+{"title":"The Catcher in the Rye","authorName":"John Smith","isbn":"439897697-3","synopsis":"An epic adventure through time and space","bookCover":"ebook","archived":false,"shareable":true},
+{"title":"The Great Gatsby","authorName":"Sarah Davis","isbn":"813436675-9","synopsis":"A gripping tale of love and betrayal","bookCover":"ebook","archived":true,"shareable":true},
+{"title":"Pride and Prejudice","authorName":"Michael Johnson","isbn":"978006633-0","synopsis":"A heartwarming story of friendship and redemption","bookCover":"paperback","archived":true,"shareable":false},
+{"title":"The Catcher in the Rye","authorName":"Michael Johnson","isbn":"074639777-1","synopsis":"A thrilling mystery that will keep you guessing","bookCover":"hardcover","archived":true,"shareable":true},
+{"title":"To Kill a Mockingbird","authorName":"Sarah Davis","isbn":"531249741-X","synopsis":"A thrilling mystery that will keep you guessing","bookCover":"paperback","archived":false,"shareable":true},
+{"title":"To Kill a Mockingbird","authorName":"Michael Johnson","isbn":"689570270-9","synopsis":"A thrilling mystery that will keep you guessing","bookCover":"paperback","archived":false,"shareable":false},
+{"title":"To Kill a Mockingbird","authorName":"Emily Brown","isbn":"033737483-X","synopsis":"A thrilling mystery that will keep you guessing","bookCover":"hardcover","archived":true,"shareable":true},
+{"title":"To Kill a Mockingbird","authorName":"Emily Brown","isbn":"528307205-3","synopsis":"A thrilling mystery that will keep you guessing","bookCover":"paperback","archived":false,"shareable":true}]

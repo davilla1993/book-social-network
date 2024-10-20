@@ -1,0 +1,32 @@
+ @PostMapping("/borrow/{book-id}")
+    public ResponseEntity<Integer> borrowBook(@PathVariable("book-id") Integer bookId, Authentication connectedUser) {
+
+        return ResponseEntity.ok(service.borrowBook(bookId, connectedUser));
+    }
+
+
+
+public Integer borrowBook(Integer bookId, Authentication connectedUser) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("No book found with ID: " + bookId));
+
+        if(book.isArchived() || !book.isShareable()) {
+            throw new OperationNotPermittedException("The requested book cannot be borrowed since it is archived or not shareable.");
+        }
+
+
+
+
+borrowBook(book : BookResponse) {
+    this.message = '';
+    this.bookService.borrowBook({
+      'book-id': book.id as number
+    }).subscribe({
+      next: () => {
+        this.message = 'Book successfully added to yout list'
+      }
+    })
+  }
+
+
+ Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "{book-id}"
